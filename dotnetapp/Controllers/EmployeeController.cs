@@ -11,7 +11,9 @@ using Microsoft.Data.SqlClient;
 
 
 namespace dotnetapp.Controllers { 
-public class EmployeeController : Controller
+
+
+public class EmployeeController : ControllerBase
 {
     private string connectionString = "User ID=sa;password=examlyMssql@123; server=localhost;Database=EmpDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
@@ -59,7 +61,7 @@ catch(Exception ex)
     }
     public ActionResult Create()
     {
-        return View();
+        return DataView();
     }
     
     
@@ -83,7 +85,7 @@ catch(Exception ex)
                 command.Parameters.AddWithValue("@phoneNumber", employee.phoneNumber);
                 command.Parameters.AddWithValue("@Address", employee.Address);
                 connection.Open();
-                command.ExecuteNonQuery();
+                command.ExecuteNoQuery();
             }
         }
         }
